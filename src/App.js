@@ -2,8 +2,7 @@
 import React, { useEffect } from "react";
 import { Provider, connect } from "react-redux";
 import { createStore } from "redux";
-import back from "./Images/back.jpg"
-
+import back from "./Images/back.jpg";
 
 // Action Types
 const SET_MARKS = "set_Marks";
@@ -41,8 +40,11 @@ const store = createStore(reducer);
 // App Component with Provider on BoardContainer
 function App() {
   return (
-    <div className="App h-screen flex justify-center items-center bg-red-300 bg-cover" style={{backgroundImage:`url(${back})`}} >
-      <div >
+    <div
+      className="App h-screen flex justify-center items-center bg-red-300 bg-cover"
+      style={{ backgroundImage: `url(${back})` }}
+    >
+      <div>
         <Provider store={store}>
           <BoardContainer />
         </Provider>
@@ -104,26 +106,23 @@ function Board({
     ];
 
     for (let c of combination) {
-      if (
-        marks[c[0]] === 1 &&
-        marks[c[1]] === 1 &&
-        marks[c[2]] === 1
-      ) {
+      if (marks[c[0]] === 1 && marks[c[1]] === 1 && marks[c[2]] === 1) {
         setGameOver(true);
         setWinningCells(c);
         alert(`Player 1 wins.GameOver`);
       }
-      if (
-        marks[c[0]] === 2 &&
-        marks[c[1]] === 2 &&
-        marks[c[2]] === 2
-      ) {
+      if (marks[c[0]] === 2 && marks[c[1]] === 2 && marks[c[2]] === 2) {
         setGameOver(true);
         setWinningCells(c);
         alert(`Player 2 wins.GameOver`);
       }
     }
-  }, [marks, setGameOver, setWinningCells]);
+    // Check for a draw condition
+    if (!marks.includes(0) && !gameOver) {
+      setGameOver(true);
+      alert(`It's a draw. Game Over`);
+    }
+  }, [marks, setGameOver, setWinningCells, gameOver]);
 
   const changeMark = (i) => {
     const m = [...marks];
