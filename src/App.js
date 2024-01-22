@@ -111,7 +111,7 @@ function Board({
       ) {
         setGameOver(true);
         setWinningCells(c);
-        alert(`Player 1 wins. Game Over`);
+        alert(`Player 1 wins.GameOver`);
       }
       if (
         marks[c[0]] === 2 &&
@@ -120,16 +120,10 @@ function Board({
       ) {
         setGameOver(true);
         setWinningCells(c);
-        alert(`Player 2 wins. Game Over`);
+        alert(`Player 2 wins.GameOver`);
       }
     }
-
-    // Check for a draw condition
-    if (!marks.includes(0) && !gameOver) {
-      setGameOver(true);
-      alert(`It's a draw. Game Over`);
-    }
-  }, [marks, setGameOver, setWinningCells, gameOver]);
+  }, [marks, setGameOver, setWinningCells]);
 
   const changeMark = (i) => {
     const m = [...marks];
@@ -139,7 +133,7 @@ function Board({
       setMarks(m);
       setPlayer(player === 1 ? 2 : 1);
     } else {
-      alert(`Game Over.`);
+      alert(`GameOver.`);
     }
   };
 
