@@ -134,7 +134,7 @@ const changeMark = (i) => {
     setMarks(m);
     setPlayer(player === 1 ? 2 : 1);
   } else {
-    alert('please click on empty blocks. If the game is over please Refresh');
+    alert('please click on empty blocks. If game is over please Refresh');
   }
 };
 
