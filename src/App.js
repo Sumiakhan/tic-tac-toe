@@ -94,54 +94,49 @@ function Board({
   setWinningCells,
 }) {
   useEffect(() => {
-    const combination = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-  
-    for (let c of combination) {
-      if (marks[c[0]] === 1 && marks[c[1]] === 1 && marks[c[2]] === 1) {
-        setWinningCells(c);
-        setTimeout(() => {
-          setGameOver(true);
-          alert(`Player 1 wins. Game Over`);
-        }, 0);
-      }
-      if (marks[c[0]] === 2 && marks[c[1]] === 2 && marks[c[2]] === 2) {
-        setWinningCells(c);
-        setTimeout(() => {
-          setGameOver(true);
-          alert(`Player 2 wins. Game Over`);
-        }, 0);
-      }
-    }
-    // Check for a draw condition
-    if (!marks.includes(0) && !gameOver) {
-      setTimeout(() => {
+  const combination = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (let c of combination) {
+    if (marks[c[0]] === 1 && marks[c[1]] === 1 && marks[c[2]] === 1) {
+      setWinningCells(c);
         setGameOver(true);
-        alert(`It's a draw. Game Over`);
-      }, 0);
+        alert(`Player 1 wins. Game Over`);
     }
-  }, [marks, setGameOver, setWinningCells, gameOver]);
-  
-
-  const changeMark = (i) => {
-    const m = [...marks];
-
-    if (m[i] === 0 && !gameOver) {
-      m[i] = player;
-      setMarks(m);
-      setPlayer(player === 1 ? 2 : 1);
-    } else {
-      alert(`GameOver.`);
+    if (marks[c[0]] === 2 && marks[c[1]] === 2 && marks[c[2]] === 2) {
+      setWinningCells(c);
+        setGameOver(true);
+        alert(`Player 2 wins. Game Over`);
     }
-  };
+  }
+  // Check for a draw condition
+  if (!marks.includes(0) && !gameOver) {
+    setTimeout(() => {
+      setGameOver(true);
+      alert(`It's a draw. Game Over`);
+    }, 0);
+  }
+}, [marks, setGameOver, setWinningCells, gameOver]);
+
+
+const changeMark = (i) => {
+  const m = [...marks];
+  if (m[i] === 0 && !gameOver) {
+    m[i] = player;
+    setMarks(m);
+    setPlayer(player === 1 ? 2 : 1);
+  } else {
+    alert('please click on empty blocks. If the game is over please Refresh');
+  }
+};
 
   return (
     <div className="Board grid  place-content-center ">
