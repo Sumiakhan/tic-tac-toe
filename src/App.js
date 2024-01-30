@@ -104,25 +104,32 @@ function Board({
       [0, 4, 8],
       [2, 4, 6],
     ];
-
+  
     for (let c of combination) {
       if (marks[c[0]] === 1 && marks[c[1]] === 1 && marks[c[2]] === 1) {
-        setGameOver(true);
         setWinningCells(c);
-        alert(`Player 1 wins.GameOver`);
+        setTimeout(() => {
+          setGameOver(true);
+          alert(`Player 1 wins. Game Over`);
+        }, 0);
       }
       if (marks[c[0]] === 2 && marks[c[1]] === 2 && marks[c[2]] === 2) {
-        setGameOver(true);
         setWinningCells(c);
-        alert(`Player 2 wins.GameOver`);
+        setTimeout(() => {
+          setGameOver(true);
+          alert(`Player 2 wins. Game Over`);
+        }, 0);
       }
     }
     // Check for a draw condition
     if (!marks.includes(0) && !gameOver) {
-      setGameOver(true);
-      alert(`It's a draw. Game Over`);
+      setTimeout(() => {
+        setGameOver(true);
+        alert(`It's a draw. Game Over`);
+      }, 0);
     }
   }, [marks, setGameOver, setWinningCells, gameOver]);
+  
 
   const changeMark = (i) => {
     const m = [...marks];
